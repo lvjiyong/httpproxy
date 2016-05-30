@@ -3,50 +3,47 @@
 """
 检查数据
 """
+from __future__ import unicode_literals
 
-import socket
 import re
+import socket
+
 import requests
 from configreset import logger
 
+from httpproxy.settings import PING_TIMEOUT, HTTP_CHECK_TIMEOUT
 
 
-def http_check(url, match, proxy, headers=None, timeout=3):
+def http_check(url, match, proxy, headers=None, timeout=HTTP_CHECK_TIMEOUT):
     """
     确认是否可正常访问远程http网站
 
+    :param headers:
     :param url:
     :param match:
     :param proxy:
     :param timeout:
     :return:
 
+    >>> import logging
+    >>> logger.setLevel(logging.DEBUG)
     >>> _url = 'http://1212.ip138.com/ic.asp'
-    >>> _match = '172.16.10.100'
+    >>> _match = '172.16.102.213'
     >>> _proxy = '172.16.10.100:3128'
-    >>> http_check(url=_url, match=_match, proxy=_proxy)
-
-
+    >>> http_check(url=_url, match=_match, proxy=_proxy).status_code
+    200
     """
-    # try:
-
-    if proxy:
-        proxy = {'http': 'http://%s' % proxy}
-    logger.debug(proxy)
-    # logger.debug('proxy:' % proxy)
-
-    result = requests.get(url=url, proxies=proxy, headers=headers, timeout=timeout).text
-
-    # logger.debug(result)
-    # if '/gzh?openid=' in result:
-    #     print('ok:%s' % response.cookies)
-
-    if re.search(re.compile(match), result):
-        # logger.debug(response.cookies)
-        return result
-        # except Exception, e:
-        #     logger.error(e)
-        #     return False
+    try:
+        if proxy:
+            proxy = {'http': 'http://%s' % proxy}
+        logger.debug(proxy)
+        response = requests.get(url=url, proxies=proxy, headers=headers, timeout=timeout)
+        logger.debug(match in response.text)
+        if re.search(re.compile(match), response.text):
+            return response
+    except Exception as e:
+        logger.error(e)
+        return None
 
 
 def ping(ip_address, port, timeout=1):
@@ -80,7 +77,7 @@ def ping(ip_address, port, timeout=1):
         return 1
 
 
-def pings(ip_addresses, timeout=1):
+def pings(ip_addresses, timeout=PING_TIMEOUT):
     """
     twisted批量ping地址与端口
     :param ip_addresses:
