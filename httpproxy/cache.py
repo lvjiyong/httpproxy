@@ -27,7 +27,7 @@ def all_ip(ip_file=IP_FILE):
     >>> append_ips(['127.0.0.1:81'])
     >>> ip_data = all_ip()
     >>> ip_data.sort()
-    >>> ip_data
+    >>> [str(ip) for ip in ip_data]
     ['127.0.0.1:80', '127.0.0.1:81']
 
     >>> ip_test = 'ip_test'
@@ -37,7 +37,7 @@ def all_ip(ip_file=IP_FILE):
     >>> append_ips(['127.0.0.1:82'], ip_test)
     >>> ip_data = all_ip(ip_test)
     >>> ip_data.sort()
-    >>> ip_data
+    >>> [str(ip) for ip in ip_data]
     ['127.0.0.1:80', '127.0.0.1:82']
     >>> clear_ip()
     >>> clear_ip(ip_test)
@@ -80,7 +80,7 @@ def remove_ips(ips, ip_file=IP_FILE):
     >>> len(all_ip())
     2
     >>> remove_ips(['127.0.0.1:80'])
-    >>> all_ip()
+    >>> [str(ip) for ip in all_ip()]
     ['127.0.0.1:81']
     >>> clear_ip()
 

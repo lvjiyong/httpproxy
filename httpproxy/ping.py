@@ -85,7 +85,7 @@ def pings(ip_addresses, timeout=PING_TIMEOUT):
     :return:
 
     >>> ip_addresses = ['220.181.57.217:80','127.1.0.1:80']
-    >>> pings(ip_addresses)
+    >>> [str(ip) for ip in pings(ip_addresses)]
     ['220.181.57.217:80']
     """
     pinged_addresses = []

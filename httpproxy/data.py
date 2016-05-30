@@ -63,7 +63,7 @@ def remove(ip_addresses, ip_file):
     >>> remove(['127.0.0.1:80'] ,ip_file)
     >>> ip_data = all_ips(ip_file)
     >>> ip_data.sort()
-    >>> ip_data
+    >>> [str(ip) for ip in ip_data]
     ['127.0.0.2:80', '127.0.0.3:80']
 
     >>> clear(ip_file)
