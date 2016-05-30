@@ -21,7 +21,7 @@ def find(response):
     :return:
     >>> import logging
     >>> logger.setLevel(logging.DEBUG)
-    >>> len(find(requests.get(url='http://www.kuaidaili.com/proxylist/1/', headers=HTTP_HEADER)))>0
+    >>> len(find(requests.get(url='http://proxy.goubanjia.com/', headers=HTTP_HEADER)))>0
     True
 
     """
@@ -54,8 +54,9 @@ def fetch(url, headers=HTTP_HEADER, timeout=FETCH_TIMEOUT, find_fun=find, proxy=
 
     >>> fetch('http://www.baidu.com')
     []
-    >>> len(fetch('http://www.kuaidaili.com/'))>0
-    True
+
+    # >>> len(fetch('http://www.kuaidaili.com/'))>0
+    # True
     >>> len(fetch('http://proxy.goubanjia.com/', proxy='172.16.10.100:3128'))>0
     True
     >>> len(fetch(url='http://proxy.goubanjia.com/', timeout=5))>0

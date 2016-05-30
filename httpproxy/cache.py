@@ -21,6 +21,26 @@ def all_ip(ip_file=IP_FILE):
     获取指定文件的所有ip
     :param ip_file:
     :return:
+    >>> all_ip()
+    []
+    >>> append_ips(['127.0.0.1:80'])
+    >>> append_ips(['127.0.0.1:81'])
+    >>> ip_data = all_ip()
+    >>> ip_data.sort()
+    >>> ip_data
+    ['127.0.0.1:80', '127.0.0.1:81']
+
+    >>> ip_test = 'ip_test'
+    >>> all_ip(ip_test)
+    []
+    >>> append_ips(['127.0.0.1:80'], ip_test)
+    >>> append_ips(['127.0.0.1:82'], ip_test)
+    >>> ip_data = all_ip(ip_test)
+    >>> ip_data.sort()
+    >>> ip_data
+    ['127.0.0.1:80', '127.0.0.1:82']
+    >>> clear_ip()
+    >>> clear_ip(ip_test)
     """
 
     global ALL_IP_ADDRESS
@@ -35,6 +55,13 @@ def append_ips(ips, ip_file=IP_FILE):
     :param ips:
     :param ip_file:
     :return:
+    >>> all_ip()
+    []
+    >>> append_ips(['127.0.0.1:80'])
+    >>> append_ips(['127.0.0.1:81'])
+    >>> len(all_ip())
+    2
+    >>> clear_ip()
     """
     _clear_ips_cache(ip_file)
     data.append(ips, ip_file)
@@ -46,7 +73,19 @@ def remove_ips(ips, ip_file=IP_FILE):
     :param ips:
     :param ip_file:
     :return:
+    >>> all_ip()
+    []
+    >>> append_ips(['127.0.0.1:80'])
+    >>> append_ips(['127.0.0.1:81'])
+    >>> len(all_ip())
+    2
+    >>> remove_ips(['127.0.0.1:80'])
+    >>> all_ip()
+    ['127.0.0.1:81']
+    >>> clear_ip()
+
     """
+
     _clear_ips_cache(ip_file)
     data.remove(ips, ip_file)
 
