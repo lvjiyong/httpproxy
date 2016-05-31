@@ -40,10 +40,13 @@ def http_check(url, match, proxy, headers=None, timeout=HTTP_CHECK_TIMEOUT):
         response = requests.get(url=url, proxies=proxy, headers=headers, timeout=timeout)
         logger.debug(match in response.text)
         if re.search(re.compile(match), response.text):
-            return response
+            return True, response
+        else:
+            return False, response
+
     except Exception as e:
         logger.error(e)
-        return None
+        return None,None
 
 
 def ping(ip_address, port, timeout=1):
