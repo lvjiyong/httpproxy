@@ -88,6 +88,8 @@ def remove_ips(ips, ip_file=IP_FILE):
 
     _clear_ips_cache(ip_file)
     data.remove(ips, ip_file)
+    if not all_ip(ip_file):
+        clear_ip(ip_file)
 
 
 def clear_ip(ip_file=IP_FILE):

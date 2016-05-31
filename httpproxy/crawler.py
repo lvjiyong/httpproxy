@@ -26,9 +26,11 @@ def find(response):
 
     """
     logger.debug(response)
+    html = re.sub(re.compile('<[^>]+?none[^>]+?>[^<]+?</[^>]+?>', re.I | re.M), '', response.text)
+    html = re.sub(re.compile('</td>', re.I | re.M), ':</td>', html)
 
-    html = re.sub(re.compile('</td>', re.I | re.M), ':</td>', response.text)
     html = re.sub(re.compile('<.*?>|\s', re.I | re.M), '', html)
+
     logger.debug(html)
 
     pattern = re.compile('(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d{1,5})', re.I | re.M)
