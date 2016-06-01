@@ -27,21 +27,27 @@ def http_check(url, match, proxy, headers=None, timeout=HTTP_CHECK_TIMEOUT):
 
     >>> import logging
     >>> logger.setLevel(logging.DEBUG)
-    >>> _url = 'http://1212.ip138.com/ic.asp'
-    >>> _match = '172.16.102.213'
-    >>> _proxy = '172.16.10.100:3128'
-    >>> http_check(url=_url, match=_match, proxy=_proxy).status_code
-    200
+
+    # >>> _url = 'http://1212.ip138.com/ic.asp'
+    # >>> _match = '172.16.102.213'
+    # >>> _proxy = '172.16.10.100:3128'
+    # >>> http_check(url=_url, match=_match, proxy=_proxy)[0]
+    # True
+
+
+
     """
     try:
         if proxy:
             proxy = {'http': 'http://%s' % proxy}
         logger.debug(proxy)
+        logger.debug(url)
         response = requests.get(url=url, proxies=proxy, headers=headers, timeout=timeout)
         logger.debug(match in response.text)
         if re.search(re.compile(match), response.text):
             return True, response
         else:
+            logger.debug(response.text)
             return False, response
 
     except Exception as e:

@@ -21,7 +21,7 @@ def find(response):
     :return:
     >>> import logging
     >>> logger.setLevel(logging.DEBUG)
-    >>> len(find(requests.get(url='http://proxy.goubanjia.com/', headers=HTTP_HEADER)))>0
+    >>> len(find(requests.get(url='http://www.kuaidaili.com/proxylist/1/', headers=HTTP_HEADER)))>0
     True
 
     """

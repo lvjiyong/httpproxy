@@ -10,7 +10,7 @@ HTTP_HEADER = {
                   'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language': 'zh-CN,en-US;q=0.8,en;q=0.5,zh;q=0.3',
-    'Accept-Encoding': 'gzip, deflate'
+    'Accept-Encoding': 'gzip, deflate',
 }
 
 # 爬取网页的代理
