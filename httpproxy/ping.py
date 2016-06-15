@@ -30,7 +30,7 @@ def http_check(url, match, proxy, headers=None, timeout=HTTP_CHECK_TIMEOUT):
 
     # >>> _url = 'http://1212.ip138.com/ic.asp'
     # >>> _match = '172.16.102.213'
-    # >>> _proxy = '172.16.10.100:3128'
+    # >>> _proxy = '172.16.10.101:3128'
     # >>> http_check(url=_url, match=_match, proxy=_proxy)[0]
     # True
 
